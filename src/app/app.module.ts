@@ -7,10 +7,10 @@ import { SpeakersListComponent } from './speakers-list/speakers-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { NgxPaginationModule} from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe} from './search.pipe';
 import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
+import { RouterModule } from '@angular/router';  // Import RouterModule
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import { SpeakerDetailsComponent } from './speaker-details/speaker-details.compo
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     FormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule,
     HttpClientModule,
     AppRoutingModule
   ],
