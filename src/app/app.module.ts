@@ -13,7 +13,7 @@ import { SpeakerDetailsComponent } from './speaker-details/speaker-details.compo
 import { RouterModule } from '@angular/router';  // Import RouterModule
 
 @NgModule({ declarations: [
-        AppComponent,
+        AppComponent,  
         SpeakersListComponent,
         FooterComponent,
         HeaderComponent,
@@ -25,4 +25,4 @@ import { RouterModule } from '@angular/router';  // Import RouterModule
         FormsModule,
         NgxPaginationModule,
         AppRoutingModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
-export class AppModule { }
+  export class AppModule { }
