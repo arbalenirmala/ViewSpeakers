@@ -1,55 +1,116 @@
-<div class="container"> 
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-8">
-        <form class="d-flex mt-3">
-            <input class="form-control me-2" type="search"  name="search" [(ngModel)]="searchText" (input)="Search()" autocomplete="off" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-          </form>
+      <form class="d-flex mt-3">
+        <input
+          class="form-control me-2"
+          type="search"
+          name="search"
+          [(ngModel)]="searchText"
+          (input)="Search()"
+          autocomplete="off"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
     </div>
     <div class="col-2">
-        <div class="input-group mb-3 mt-3">
-            <input type="text" class="form-control" placeholder="Result" [(ngModel)]="resultNum" aria-label="result per page" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" (click)="showSpeakers()"  id="button-addon2">Result</button>
-          </div>
+      <div class="input-group mb-3 mt-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Result"
+          [(ngModel)]="resultNum"
+          aria-label="result per page"
+          aria-describedby="button-addon2"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="showSpeakers()"
+          id="button-addon2"
+        >
+          Result
+        </button>
+      </div>
     </div>
     <div class="col-2">
-        <div class="input-group mb-3 mt-3">
-            <input type="text" class="form-control" placeholder="page" [(ngModel)]="resPageNum" aria-label="page number" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" (click)="showSpeakers()" id="button-addon2">Go to Page</button>
-          </div>
+      <div class="input-group mb-3 mt-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="page"
+          [(ngModel)]="resPageNum"
+          aria-label="page number"
+          aria-describedby="button-addon2"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="showSpeakers()"
+          id="button-addon2"
+        >
+          Go to Page
+        </button>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
+  <div class="row">
     <div class="dynamic-content-list" *ngIf="speakerList">
-        <table class="table table-hover">
+      <table class="table table-hover">
         <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let sp of speakerList  | paginate: { itemsPerPage: 10, currentPage: page , totalItems : speakerList.length} ; let i=index;" (click)="setSpeakerData(sp)">
-                <th scope="row">{{i}}</th>
-                <td>{{sp.name.first}}</td>
-                <td>{{sp.name.last}}</td>
-                <td>{{sp.email}}</td>
-              </tr>
-          </tbody>
-        </table>
-        <div class="individual-tile on-light speaker-{{i}}" *ngFor="let sp of speakerList  | paginate: { itemsPerPage: 10, currentPage: page , totalItems : speakerList.length}; let i=index;">
-        </div>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let sp of speakerList
+                | paginate
+                  : {
+                      itemsPerPage: 10,
+                      currentPage: page,
+                      totalItems: speakerList.length
+                    };
+              let i = index
+            "
+            (click)="setSpeakerData(sp)"
+          >
+            <th scope="row">{{ i }}</th>
+            <td>{{ sp.name.first }}</td>
+            <td>{{ sp.name.last }}</td>
+            <td>{{ sp.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="individual-tile on-light speaker-{{ i }}"
+        *ngFor="
+          let sp of speakerList
+            | paginate
+              : {
+                  itemsPerPage: 10,
+                  currentPage: page,
+                  totalItems: speakerList.length
+                };
+          let i = index
+        "
+      ></div>
     </div>
-</div>
+  </div>
 
-<div class="row pagination-controls justify-content-center">
-    <pagination-controls (pageChange)="onTableDataChange($event)" class="float-left"></pagination-controls>
-</div>
-
+  <div class="row pagination-controls justify-content-center">
+    <pagination-controls
+      (pageChange)="onTableDataChange($event)"
+      class="float-left"
+    ></pagination-controls>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
-

@@ -1,26 +1,48 @@
 <div class="container" id="speaker-details-container">
-    <button type="button" class="btn btn-link" (click)="backToPage()"><i class="fa fa-angle-left"></i> Back</button>
-    <div class="card mb-3" style="max-width: 780px;">
-        <div class="row g-0">
-            <div class="card-header"><h5 class="card-title">{{spData?.name?.title }} {{spData?.name?.first }} {{spData?.name?.last }}</h5></div>
+  <button type="button" class="btn btn-link" (click)="backToPage()">
+    <i class="fa fa-angle-left"></i> Back
+  </button>
+  <div class="card mb-3" style="max-width: 780px">
+    <div class="row g-0">
+      <div class="card-header">
+        <h5 class="card-title">
+          {{ spData?.name?.title }} {{ spData?.name?.first }}
+          {{ spData?.name?.last }}
+        </h5>
+      </div>
 
-        <div class="col-md-4">
-            <img src="{{spData?.picture?.large}}" class="img-fluid rounded-start" alt="...">
+      <div class="col-md-4">
+        <img
+          src="{{ spData?.picture?.large }}"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">
+            <i class="fa fa-envelope"></i> {{ spData?.email }}
+          </p>
+          <p>
+            <i class="fa fa-birthday-cake"></i> {{ spData?.dob.date | date }}
+          </p>
+          <p>
+            <i class="fa fa-map-marker"></i>
+            {{ spData?.location?.street.number }},
+            {{ spData?.location?.street.name }} , {{ spData?.location?.city }} ,
+            {{ spData?.location?.state }} , {{ spData?.location?.postcode }}
+            {{ spData?.location?.country }}
+          </p>
+          <p class="card-text">
+            <i class="fa fa-phone"></i
+            ><small class="text-muted"> {{ spData?.phone }}</small>
+          </p>
+          <p class="card-text">
+            <i class="fa fa-mobile"></i
+            ><small class="text-muted"> {{ spData?.cell }}</small>
+          </p>
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-            
-            <p class="card-text"><i class="fa fa-envelope"></i> {{spData?.email}}</p>
-            <p><i class="fa fa-birthday-cake"></i> {{spData?.dob.date | date}}</p>
-            <p><i class="fa fa-map-marker"></i>
-                {{spData?.location?.street.number}}, {{spData?.location?.street.name}} ,
-                {{spData?.location?.city}} , {{spData?.location?.state}} , {{spData?.location?.postcode}} {{spData?.location?.country}}
-            
-            </p>
-            <p class="card-text"><i class="fa fa-phone"></i><small class="text-muted"> {{spData?.phone}}</small></p>
-            <p class="card-text"><i class="fa fa-mobile"></i><small class="text-muted"> {{spData?.cell}}</small></p>
-            </div>
-        </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>

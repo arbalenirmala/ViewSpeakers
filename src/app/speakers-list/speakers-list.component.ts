@@ -1,64 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import {SpeakerListService} from '../service/speaker-list.service';
-import {SharedService} from '../service/shared.service';
-import { Router , ActivatedRoute  } from '@angular/router';
+import { SpeakerListService } from '../service/speaker-list.service';
+import { SharedService } from '../service/shared.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-speakers-list',
   templateUrl: './speakers-list.component.html',
-  styleUrls: ['./speakers-list.component.css']
+  styleUrls: ['./speakers-list.component.css'],
 })
 export class SpeakersListComponent implements OnInit {
-
-  speakerData:any | undefined;
-  speakerList:any[] | undefined;
+  speakerData: any | undefined;
+  speakerList: any[] | undefined;
   page: number = 1;
   searchText: string | undefined;
-  resultNum=20;
-  resPageNum=1;
+  resultNum = 20;
+  resPageNum = 1;
 
   constructor(
-    private speakerListService:SpeakerListService ,
-    private sharedService: SharedService , 
+    private speakerListService: SpeakerListService,
+    private sharedService: SharedService,
     private _router: Router,
-    private r: ActivatedRoute) { }
+    private r: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-
     this.showSpeakers();
   }
 
-  showSpeakers(){
-    this.speakerListService.getSpeakersList(this.resultNum, this.resPageNum).subscribe(data =>{
-      this.speakerData = data;
-      this.speakerList = this.speakerData.results;
-    })
+  showSpeakers() {
+    this.speakerListService
+      .getSpeakersList(this.resultNum, this.resPageNum)
+      .subscribe((data) => {
+        this.speakerData = data;
+        this.speakerList = this.speakerData.results;
+      });
   }
 
   onTableDataChange(event: any) {
     this.page = event;
   }
 
-  Search(){
-    if(this.searchText!== ""){
+  Search() {
+    if (this.searchText !== '') {
       let searchValue = this.searchText?.toLocaleLowerCase();
-      this.speakerList = this.speakerList?.filter((record:any)=>{
-        return record.name.first.toLocaleLowerCase().match(searchValue ) || record.name.last.toLocaleLowerCase().match(searchValue )
-      })
-    }
-    else{
+      this.speakerList = this.speakerList?.filter((record: any) => {
+        return (
+          record.name.first.toLocaleLowerCase().match(searchValue) ||
+          record.name.last.toLocaleLowerCase().match(searchValue)
+        );
+      });
+    } else {
       this.showSpeakers();
-
     }
   }
 
-  showResult(){
+  showResult() {}
 
-  }
-
-  setSpeakerData(spData: any){
-    this.sharedService.spObject= spData;
+  setSpeakerData(spData: any) {
+    this.sharedService.spObject = spData;
     this._router.navigate(['../details'], { relativeTo: this.r });
   }
-
 }
