@@ -4,9 +4,10 @@ import { SharedService } from '../service/shared.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-speakers-list',
-  templateUrl: './speakers-list.component.html',
-  styleUrls: ['./speakers-list.component.css'],
+    selector: 'app-speakers-list',
+    templateUrl: './speakers-list.component.html',
+    styleUrls: ['./speakers-list.component.css'],
+    standalone: false
 })
 export class SpeakersListComponent implements OnInit {
   speakerData: any | undefined;

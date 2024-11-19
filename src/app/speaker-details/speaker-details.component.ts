@@ -3,9 +3,10 @@ import { SharedService } from '../service/shared.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-speaker-details',
-  templateUrl: './speaker-details.component.html',
-  styleUrls: ['./speaker-details.component.css'],
+    selector: 'app-speaker-details',
+    templateUrl: './speaker-details.component.html',
+    styleUrls: ['./speaker-details.component.css'],
+    standalone: false
 })
 export class SpeakerDetailsComponent implements OnInit {
   public spData: any;
